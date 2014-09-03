@@ -72,7 +72,6 @@ def load_dict(book='/usr/share/dict/words'):
         return f.readlines()
 
 def min_complex_password(password):
-    ''' http://imgs.xkcd.com/comics/password_strength.png '''
     return len(''.join(set(password))) ** len(password)
 
 def complex_zero(password):
