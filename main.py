@@ -97,16 +97,20 @@ def calc_entropy(value):
 while True:
     div = 1
     a = raw_input('Enter a password: ')
-    words = load_dict()mhgffbv
-            div = complex_password(x) / len(words)
+    words = load_dict()
+    #TODO cheesecheese isn't as secure as you make thing
+    for x in words:
+        x = x.rstrip('\r\n')
+        if len(x) > magic and a.find(x) != -1:
+            div *= complex_password(x) / len(words)
             print '%s sounds like a dictionary word, dividing your result by %s' % (x, div)
-            print '%s is calculated by %s\'s own entropy (%s) divided by the length of the dictionary (%s)' % \
+            print '%s is calculated by %s\'s own entropy (%s) multiplied by any previous found words divided by the length of the dictionary (%s)' % \
             (div, x, complex_password(x), len(words))
 
     b = complex_password(a)/div
     c = min_complex_password(a)
     d = complex_zero(a)/div
-    e = min_zero(a)g
+    e = min_zero(a)
     f = math.log(complex_password(a)/div, 2)
     print '%s would approximately take %s tries to bruteforce knowing the exact length' % (a, b)
     print '%s would approximately take %s tries to bruteforce by knowing the exact character set and length' % (a, c)
