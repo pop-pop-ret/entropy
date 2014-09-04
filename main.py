@@ -2,7 +2,7 @@
 Entropy calculator for passwords, inspired by http://imgs.xkcd.com/comics/password_strength.png
 """
 
-
+import math
 import string
 magic = 5  # this is the mininum length for a word to be considered a dictionary word and not random
 
@@ -57,6 +57,7 @@ def complex_password(password):
     if has_num:
         complexity += 10
         has_outwards_num = False
+    if complexity == 0:  complexity = 1
     combinations = complexity ** length
     if has_outwards_num:
         combinations *= 10
@@ -96,10 +97,7 @@ def calc_entropy(value):
 while True:
     div = 1
     a = raw_input('Enter a password: ')
-    words = load_dict()
-    for x in words:
-        x = x.rstrip('\r\n')
-        if len(x) > magic and a.find(x) != -1:
+    words = load_dict()mhgffbv
             div = complex_password(x) / len(words)
             print '%s sounds like a dictionary word, dividing your result by %s' % (x, div)
             print '%s is calculated by %s\'s own entropy (%s) divided by the length of the dictionary (%s)' % \
@@ -108,8 +106,8 @@ while True:
     b = complex_password(a)/div
     c = min_complex_password(a)
     d = complex_zero(a)/div
-    e = min_zero(a)
-    f = calc_entropy(b/div)
+    e = min_zero(a)g
+    f = math.log(complex_password(a)/div, 2)
     print '%s would approximately take %s tries to bruteforce knowing the exact length' % (a, b)
     print '%s would approximately take %s tries to bruteforce by knowing the exact character set and length' % (a, c)
     print '%s would approximately take %s tries to bruteforce without knowing the exact length or character set' % (a, d)
